@@ -24,7 +24,7 @@ use App\Http\Controllers\SaranaPrasaranaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('page.publik.home');
 });
 
 Auth::routes();
@@ -85,7 +85,26 @@ Route::prefix('/json')->name('json.')->group(function () {
     Route::get('/bulan', 'JsonController@bulan')->name('bulan');
     Route::get('/sopd', 'JsonController@sopd')->name('sopd');
 });
+// Menambahkan rute untuk bagian Laporan
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
+
+Route::get('/kegiatan','KegiatanController@index')->name('kegiatan');
+
+Route::name('data.')->group(function () {
+
+    Route::prefix('/penghargaan')->name('penghargaan.')->group(function () {
+        Route::get('/', 'DataController@penghargaan')->name('index');
+        Route::get('/{tahun}', 'DataController@penghargaanDetail')->name('show');
+    });
+
+    Route::prefix('/sarpras')->name('sarpras.')->group(function () {
+        Route::get('/', 'DataController@sarpras')->name('index');
+        Route::get('/{id}', 'DataController@sarprasDetail')->name('show');
+        Route::get('/{id}/data', 'DataController@sarprasData')->name('data');
+    });
+});
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function(){
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
@@ -102,6 +121,18 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::get('/{id}/edit','KegiatanController@edit')->name('edit');
         Route::post('/{id}/update','KegiatanController@update')->name('update');
         Route::delete('/{id}/delete','KegiatanController@destroy')->name('delete');
+    });
+
+    
+    Route::prefix('/timeline')->name('timeline.')->group(function () {
+        Route::get('/', 'TimeLineController@index')->name('index');
+        Route::get('/create', 'TimeLineController@create')->name('create');
+        Route::post('/store','TimeLineController@store')->name('store');
+        Route::get('/data', 'TimeLineController@data')->name('data');
+        Route::get('/{id}', 'TimeLineController@show')->name('show');
+        Route::get('/{id}/edit','TimeLineController@edit')->name('edit');
+        Route::post('/{id}/update','TimeLineController@update')->name('update');
+        Route::delete('/{id}/delete','TimeLineController@destroy')->name('delete');
     });
 
     Route::namespace('Data')->group(function(){
@@ -259,15 +290,3 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
     });
 
 });
-  // Menambahkan rute untuk bagian Laporan
-  Route::get('/inputLaporan', [HomeController::class, 'inputLaporan'])->name('inputLaporan');
-  Route::get('/permasalahan', [HomeController::class, 'permasalahanLaporan'])->name('permasalahan');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
-
-Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');
-Route::get('/data', [DataBerandaController::class, 'data'])->name('data');
-Route::get('/rembug-warga', [RembugController::class, 'rembugWarga'])->name('rembug-warga');

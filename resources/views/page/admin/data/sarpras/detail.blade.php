@@ -76,7 +76,7 @@
                     {data: 'alamat_t_data_sarpras', name: 'alamat_t_data_sarpras'},
                     {data: 'rt_t_data_sarpras', name: 'rt_t_data_sarpras'},
                     {data: 'rw_t_data_sarpras', name: 'rw_t_data_sarpras'},
-                    {data: 'nama_j_sopd', name: 'nama_j_sopd'},
+                    {data: 'nama_j_kelurahan', name: 'nama_j_kelurahan'},
                     {data: 'keterangan_t_data_sarpras', name: 'keterangan_t_data_sarpras'},
                     {data: 'detail_t_data_sarpras', name: 'detail_t_data_sarpras'},
                     {

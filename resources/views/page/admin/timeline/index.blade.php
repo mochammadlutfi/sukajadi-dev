@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kegiatan</h1>
+                <h1>Timeline <small>Kegiatan</small></h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Kegiatan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Beranda</a></li>
+                    <li class="breadcrumb-item active">Timeline Kegiatan</li>
                 </ol>
             </div>
         </div>
@@ -44,6 +44,20 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <a href="{{ route('admin.timeline.create') }}" class="btn btn-primary">
+            <i class="fa fa-plus mr-1"></i>
+            Tambah
+        </a>
+
+        <div class="space-x-1">
+            <button class="btn btn-info text-white">
+                <i class="fa fa-print"></i>
+                Export
+            </button>
         </div>
     </div>
 

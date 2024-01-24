@@ -12,12 +12,12 @@ $links = [
         "icon" => "fas fa-home",
         "is_multi" => false
     ],
-    // [
-    //   "href" => route('admin.kegiatan.timeline'),
-    //   "text" => "KEGIATAN",
-    //   "icon" => "fas fa-camera",
-    //   "is_multi" => false
-    // ],
+    [
+      "href" => route('admin.timeline.index'),
+      "text" => "KEGIATAN",
+      "icon" => "fas fa-camera",
+      "is_multi" => false
+    ],
     [
         "text" => "LAPORAN",
         "icon" => "fa fa-list-alt",
